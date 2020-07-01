@@ -22,6 +22,29 @@ Route::group(['prefix' => 'sales_order'], function (){
     Route::get          ('/payment/{id}',                'SalesOrderController@payment'                  )->name('reason_update');
 });
 
+// Expense
+Route::group(['prefix' => 'expense'], function (){
+    Route::get          ('/',                            'ExpenseController@index'                    )->name('reason');
+    Route::post         ('/save',                        'ExpenseController@store'                    )->name('reason_store');
+    Route::get          ('/edit/{id}',                   'ExpenseController@edit'                     )->name('reason_edit');
+    Route::post         ('/update/{id}',                 'ExpenseController@update'                   )->name('reason_update');
+    Route::get          ('/destroy/{id}',                'ExpenseController@destroy'                  )->name('reason_update');
+});
+
+// Overall
+Route::group(['prefix' => 'overall'], function (){
+    Route::get          ('/',                            'ExpenseController@overall'                    )->name('reason');
+});
+
+// Expense Type
+Route::group(['prefix' => 'expense_type'], function (){
+    Route::get          ('/',                            'ExpenseTypeController@index'                    )->name('reason');
+    Route::post         ('/save',                        'ExpenseTypeController@store'                    )->name('reason_store');
+    Route::get          ('/edit/{id}',                   'ExpenseTypeController@edit'                     )->name('reason_edit');
+    Route::post         ('/update/{id}',                 'ExpenseTypeController@update'                   )->name('reason_update');
+    Route::get          ('/destroy/{id}',                'ExpenseTypeController@destroy'                  )->name('reason_update');
+});
+
 // Clients
 Route::group(['prefix' => 'client'], function (){
     Route::get          ('/',                            'ClientController@index'                    )->name('reason');

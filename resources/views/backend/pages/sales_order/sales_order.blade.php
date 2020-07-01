@@ -28,6 +28,8 @@
                 <h3 class="card-title">List of all Orders</h3>
               </div>
               <!-- /.card-header -->
+        @include('backend.partials.flash-message')
+
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
@@ -55,8 +57,8 @@
                             <td>{{++$key}}</td>
                             <td>{{$sales_order->code}}</td>
                             <td>{{$sales_order->order_date}}</td>
-                            <td>{{$sales_order->client_id}}</td>
-                            <td>{{$sales_order->category_id}}</td>
+                            <td>{{$sales_order->client->firstname . ' ' . $sales_order->client->lastname}}</td>
+                            <td>{{$sales_order->category->name}}</td>
                             <td>{{$sales_order->details}}</td>
                             <td>{{$sales_order->quantity}}</td>
                             <td>{{$sales_order->unit_price}}</td>

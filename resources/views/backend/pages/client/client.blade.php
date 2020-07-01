@@ -28,6 +28,8 @@
                 <h3 class="card-title">List of all Client</h3>
               </div>
               <!-- /.card-header -->
+        @include('backend.partials.flash-message')
+
               <div class="card-body">
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
@@ -183,6 +185,11 @@
         }
 
         $(document).ready(function(){
+            $("#example2").DataTable({
+              "autoWidth": false,
+              "scrollX": true
+            });
+
             $('.edit').click(function() {
                 edit(this.id);
             });

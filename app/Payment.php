@@ -12,4 +12,9 @@ class Payment extends Model
         'amount_paid',
         'type',
     ];
+
+    public function sales_order()
+    {
+        return $this->belongsTo(Client::class, 'id');
+    }
 }

@@ -17,8 +17,20 @@ class Client extends Model
         'market_source'
     ];
 
-    public function client()
+    public function sales()
     {
-        return $this->belongsTo(SalesOrder::class, 'client_id');
+        return $this->hasOne(SalesOrder::class);
+    }
+
+    public function PaymentName()
+    {
+        return $this->hasOneThrough(
+            Payment::class,
+            SalesOrder::class,
+            'client_id', // Foreign key on cars table...
+            'sales_order_id', // Foreign key on owners table...
+            'id', // Local key on mechanics table...
+            'id' // Local key on cars table...
+        );
     }
 }

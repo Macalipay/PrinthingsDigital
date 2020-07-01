@@ -66,13 +66,12 @@
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Daily Expense
-                <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
           <li class="nav-header">VIEWING</li>
           <li class="nav-item">
-            <a href="{{ url('payment') }}" class="nav-link">
+            <a href="{{ url('overall') }}" class="nav-link">
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 Overall Expense
@@ -80,7 +79,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('overall_expense') }}" class="nav-link">
+            <a href="{{ url('payment') }}" class="nav-link">
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 Payment
@@ -102,6 +101,14 @@
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 Category
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('expense_type') }}" class="nav-link">
+              <i class="nav-icon far fa-calendar-alt"></i>
+              <p>
+                Expense Type
               </p>
             </a>
           </li>

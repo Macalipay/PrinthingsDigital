@@ -7,11 +7,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Categories</h1>
+            <h1>Expense Type</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">Add Category</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">Add Expense Type</button>
             </ol>
           </div>
         </div>
@@ -25,9 +25,9 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">List of all Category</h3>
+                <h3 class="card-title">List of all Expense Type</h3>
               </div>
-            @include('backend.partials.flash-message')
+        @include('backend.partials.flash-message')
 
               <!-- /.card-header -->
               <div class="card-body">
@@ -41,15 +41,15 @@
                   </tr>
                   </thead>
                   <tbody>
-                    @foreach ($categories as $key => $category)
+                    @foreach ($expensetypes as $key => $expensetype)
                         <tr>
                             <td>{{++$key}}</td>
-                            <td>{{$category->name}}</td>
-                            <td>{{$category->description}}</td>
+                            <td>{{$expensetype->name}}</td>
+                            <td>{{$expensetype->description}}</td>
                             <td>
                                 <div class="form-group" style="display:inline-flex">
-                                        <a class="btn btn-success btn-sm mr-1 edit" title="Edit" data-toggle="modal" data-target="#modal-lg" id={{$category->id}}><i class="fa fa-edit"></i></a>
-                                        <form class="form-horizontal" method="get" action="{{ url('category/destroy/'. $category->id)}}">
+                                        <a class="btn btn-success btn-sm mr-1 edit" title="Edit" data-toggle="modal" data-target="#modal-lg" id={{$expensetype->id}}><i class="fa fa-edit"></i></a>
+                                        <form class="form-horizontal" method="get" action="{{ url('expense_type/destroy/'. $expensetype->id)}}">
                                             <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></button>
                                         </form>
                                 </div>
@@ -57,14 +57,6 @@
                         </tr>  
                     @endforeach
                   </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Action</th>
-                  </tr>
-                  </tfoot>
                 </table>
               </div>
             </div>
@@ -84,7 +76,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <form method="POST" id="category-form" action="{{ url('category/save') }}"  data-parsley-validate class="form-horizontal form-label-left">
+            <form method="POST" id="expensetype-form" action="{{ url('expense_type/save') }}"  data-parsley-validate class="form-horizontal form-label-left">
                 @csrf
             <div class="card-body">
                 <div class="form-group">
@@ -113,16 +105,13 @@
     <script>
         function edit(id){
             $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: '/category/edit/' + id,
+                url: '/expense_type/edit/' + id,
                 method: 'get',
                 data: {
 
                 },
                 success: function(data) {
-                    $('.modal-title').text('Update Category');
+                    $('.modal-title').text('Update Expense Type');
                     $('.user-button').text('Update');
 
                         $.each(data, function() {
@@ -130,7 +119,7 @@
                                 $('#'+k).val(v);
                             });
                         });
-                    $('#category-form').attr('action', 'category/update/' + data.categories.id);
+                    $('#expensetype-form').attr('action', 'expense_type/update/' + data.expensetypes.id);
                 }
             });
         }

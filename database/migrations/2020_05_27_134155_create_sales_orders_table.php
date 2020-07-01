@@ -22,7 +22,7 @@ class CreateSalesOrdersTable extends Migration
             $table->string('details');
             $table->integer('quantity');
             $table->integer('unit_price');
-            $table->integer('paid_amount')->nullable();
+            $table->integer('paid_amount')->default(0);
             $table->integer('balance')->nullable();;
             $table->date('due_date');
             $table->string('payment_status')->default('Unpaid');

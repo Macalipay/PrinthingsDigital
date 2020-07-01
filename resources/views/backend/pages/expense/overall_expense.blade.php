@@ -7,11 +7,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Categories</h1>
+            <h1>Overall Expense</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">Add Category</button>
+                {{-- <button class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">Add Overall Expense</button> --}}
             </ol>
           </div>
         </div>
@@ -25,46 +25,42 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">List of all Category</h3>
+                <h3 class="card-title">View of all Overall Expense Record</h3>
               </div>
-            @include('backend.partials.flash-message')
-
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
                     <th>#</th>
-                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Expense Type</th>
+                    <th>Amount</th>
                     <th>Description</th>
-                    <th>Action</th>
+                    <th>Payment Type</th>
+                    {{-- <th>Action</th> --}}
                   </tr>
                   </thead>
                   <tbody>
-                    @foreach ($categories as $key => $category)
+                    @foreach ($overallexpenses as $key => $overallexpense)
                         <tr>
                             <td>{{++$key}}</td>
-                            <td>{{$category->name}}</td>
-                            <td>{{$category->description}}</td>
-                            <td>
+                            <td>{{$overallexpense->expense_date}}</td>
+                            <td>{{$overallexpense->expenseType->name}}</td>
+                            <td>{{$overallexpense->amount}}</td>
+                            <td>{{$overallexpense->description}}</td>
+                            <td>{{$overallexpense->payment_type}}</td>
+                            {{-- <td>
                                 <div class="form-group" style="display:inline-flex">
-                                        <a class="btn btn-success btn-sm mr-1 edit" title="Edit" data-toggle="modal" data-target="#modal-lg" id={{$category->id}}><i class="fa fa-edit"></i></a>
-                                        <form class="form-horizontal" method="get" action="{{ url('category/destroy/'. $category->id)}}">
+                                        <a class="btn btn-success btn-sm mr-1 edit" title="Edit" data-toggle="modal" data-target="#modal-lg" id={{$overallexpense->id}}><i class="fa fa-edit"></i></a>
+                                        <form class="form-horizontal" method="get" action="{{ url('overallexpense/destroy/'. $overallexpense->id)}}">
                                             <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></button>
                                         </form>
                                 </div>
-                            </td>
+                            </td> --}}
                         </tr>  
                     @endforeach
                   </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Action</th>
-                  </tr>
-                  </tfoot>
                 </table>
               </div>
             </div>
@@ -84,7 +80,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <form method="POST" id="category-form" action="{{ url('category/save') }}"  data-parsley-validate class="form-horizontal form-label-left">
+            <form method="POST" id="overallexpense-form" action="{{ url('overall_expense/save') }}"  data-parsley-validate class="form-horizontal form-label-left">
                 @csrf
             <div class="card-body">
                 <div class="form-group">
@@ -113,16 +109,13 @@
     <script>
         function edit(id){
             $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: '/category/edit/' + id,
+                url: '/overall_expense/edit/' + id,
                 method: 'get',
                 data: {
 
                 },
                 success: function(data) {
-                    $('.modal-title').text('Update Category');
+                    $('.modal-title').text('Update Overall Expense');
                     $('.user-button').text('Update');
 
                         $.each(data, function() {
@@ -130,7 +123,7 @@
                                 $('#'+k).val(v);
                             });
                         });
-                    $('#category-form').attr('action', 'category/update/' + data.categories.id);
+                    $('#overallexpense-form').attr('action', 'overall_expense/update/' + data.overallexpenses.id);
                 }
             });
         }
@@ -140,7 +133,6 @@
               "autoWidth": false,
               "scrollX": true
             });
-
             $('.edit').click(function() {
                 edit(this.id);
             });

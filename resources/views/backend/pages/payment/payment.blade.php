@@ -11,7 +11,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">Add Payment</button>
+                {{-- <button class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">Add Payment</button> --}}
             </ol>
           </div>
         </div>
@@ -44,7 +44,7 @@
                     @foreach ($payments as $key => $payment)
                         <tr>
                             <td>{{++$key}}</td>
-                            <td>{{$payment->sales_order_id}}</td>
+                            <td>{{$payment->sales_order->firstname . ' ' . $payment->sales_order->lastname}}</td>
                             <td>{{$payment->payment_date}}</td>
                             <td>{{$payment->amount_paid}}</td>
                             <td>{{$payment->type}}</td>
@@ -59,16 +59,6 @@
                         </tr>  
                     @endforeach
                   </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>#</th>
-                    <th>Customer Name</th>
-                    <th>Payment Date</th>
-                    <th>Amount Paid</th>
-                    <th>Type</th>
-                    <th>Action</th>
-                  </tr>
-                  </tfoot>
                 </table>
               </div>
             </div>
@@ -140,6 +130,10 @@
         }
 
         $(document).ready(function(){
+          $("#example2").DataTable({
+              "autoWidth": false,
+              "scrollX": true
+            });
             $('.edit').click(function() {
                 edit(this.id);
             });
