@@ -22,8 +22,8 @@ class CreateSalesOrdersTable extends Migration
             $table->string('details');
             $table->integer('quantity');
             $table->integer('unit_price');
-            $table->integer('paid_amount');
-            $table->integer('balance');
+            $table->integer('paid_amount')->nullable();
+            $table->integer('balance')->nullable();;
             $table->date('due_date');
             $table->string('payment_status')->default('Unpaid');
             $table->string('order_status')->default('Pending');
