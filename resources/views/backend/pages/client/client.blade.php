@@ -60,7 +60,7 @@
                                 <div class="form-group" style="display:inline-flex">
                                         <a class="btn btn-success btn-sm mr-1 edit" title="Edit" data-toggle="modal" data-target="#modal-lg" id={{$client->id}}><i class="fa fa-edit"></i></a>
                                         <form class="form-horizontal" method="get" action="{{ url('client/destroy/'. $client->id)}}">
-                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></button>
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash" onclick="return confirm('Are you sure?')"></i></button>
                                         </form>
                                 </div>
                             </td>
@@ -141,7 +141,7 @@
                       <option>Market Place</option>
                       <option>Natural Market</option>
                       <option>Referral</option>
-                      <option>Walk-in</option>
+                      <option>Walkin</option>
                     </select>
                 </div>
             </div>

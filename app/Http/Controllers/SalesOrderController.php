@@ -88,8 +88,7 @@ class SalesOrderController extends Controller
             $sales_order->order_status = $value;
             $sales_order->save();
         }
-        
-        return response()->json(compact('sales_orders'));
+        // return response()->json(compact('sales_orders'));
     }
 
     public function update(Request $request, $id)

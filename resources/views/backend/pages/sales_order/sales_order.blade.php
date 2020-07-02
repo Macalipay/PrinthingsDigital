@@ -94,7 +94,7 @@
                                     <a class="btn btn-warning btn-sm mr-1 layout" title="Layout" data-toggle="modal" data-target="#modal-sm" id={{$sales_order->id}}><i class="fa fa-pen-nib"></i></a>
                                     <a class="btn btn-primary btn-sm mr-1 pay" title="Layout" data-toggle="modal" data-target="#modal-pay" id={{$sales_order->id}}><i class="fa fa-money-bill-alt"></i></a>
                                         <form class="form-horizontal" method="get" action="{{ url('sales_order/destroy/'. $sales_order->id)}}">
-                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></button>
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash" onclick="return confirm('Are you sure?')"></i></button>
                                         </form>
                                 </div>
                             </td>
