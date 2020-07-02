@@ -46,7 +46,7 @@
                         <tr>
                             <td>{{++$key}}</td>
                             <td>{{$overallexpense->expense_date}}</td>
-                            <td>{{$overallexpense->expenseType->name}}</td>
+                            <td>{{$overallexpense->expense_id}}</td>
                             <td>{{$overallexpense->amount}}</td>
                             <td>{{$overallexpense->description}}</td>
                             <td>{{$overallexpense->payment_type}}</td>
