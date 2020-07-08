@@ -1,5 +1,8 @@
 @extends('backend.master.template')
-
+@section('link')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
+@endsection
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -35,15 +38,15 @@
                   <thead>
                   <tr>
                     <th>#</th>
-                    <th>Code</th>
+                    {{-- <th>Code</th> --}}
                     <th>Order Date</th>
                     <th>Client</th>
                     <th>Category</th>
                     <th>Details</th>
-                    <th>Quantity</th>
+                    <th>Qty</th>
                     <th>Price</th>
                     <th>Amount Paid</th>
-                    <th>Balance</th>
+                    <th>Bal.</th>
                     <th>Due Date</th>
                     <th>Order Status</th>
                     <th>Layout Status</th>
@@ -55,8 +58,8 @@
                     @foreach ($sales_orders as $key => $sales_order)
                         <tr>
                             <td>{{++$key}}</td>
-                            <td>{{$sales_order->code}}</td>
-                            <td>{{$sales_order->order_date}}</td>
+                            {{-- <td>{{$sales_order->code}}</td> --}}
+                            <td>{{date('M-d-y', strtotime($sales_order->order_date))}}</td>
                             <td>{{$sales_order->client->firstname . ' ' . $sales_order->client->lastname}}</td>
                             <td>{{$sales_order->category->name}}</td>
                             <td>{{$sales_order->details}}</td>
@@ -64,7 +67,7 @@
                             <td>{{$sales_order->unit_price}}</td>
                             <td>{{$sales_order->paid_amount}}</td>
                             <td>{{$sales_order->balance}}</td>
-                            <td>{{$sales_order->due_date}}</td>
+                            <td>{{date('M-d-y', strtotime($sales_order->due_date))}}</td>
                             {{-- LAYOUT STATUS --}}
                             @if ($sales_order->order_status == 'Done')
                             <td><span class="badge bg-success">{{$sales_order->order_status}}</span></td>
@@ -241,6 +244,10 @@
 @endsection
 
 @section('scripts')
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.js" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/buttons/1.0.0/js/buttons.html5.min.js" crossorigin="anonymous"></script>
+
     <script>
         function edit(id){
             $.ajax({
@@ -280,8 +287,14 @@
 
         $(document).ready(function(){
           $("#example1").DataTable({
-              "autoWidth": false,
-              "scrollX": true
+            
+              dom: 'Bfrtip',
+              buttons: [
+                  'copyHtml5',
+                  'excelHtml5',
+                  'csvHtml5',
+                  'pdfHtml5'
+              ]
             });
 
             $('.edit').click(function() {

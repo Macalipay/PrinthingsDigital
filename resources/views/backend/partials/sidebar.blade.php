@@ -38,18 +38,18 @@
                   <p>Daily</p>
                 </a>
               </li>
-              {{-- <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
+              <li class="nav-item">
+                <a href="{{url('dashboard/weekly')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Weekly</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="{{url('dashboard/overall')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>General</p>
                 </a>
-              </li> --}}
+              </li>
             </ul>
           </li>
           <li class="nav-item">
