@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Expense;
 use App\ExpenseType;
+use App\Client;;
 use Illuminate\Http\Request;
 use Auth;
 use Validator;
@@ -26,7 +27,7 @@ class ExpenseController extends Controller
 
     public function index()
     {
-        $expenses = Expense::where('expense_date', Carbon::now()->format('Y-m-d'))->orderBy('id')->get();
+        $expenses = Expense::where('expense_date', Carbon::now()->format('Y-m-d'))->orderBy('id')->with('expenseType')->get();
         $expensetypes = ExpenseType::orderBy('id')->get();
         return view('backend.pages.expense.daily_expense',compact('expenses', 'expensetypes'));
     }

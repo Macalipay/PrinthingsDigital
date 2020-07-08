@@ -31,6 +31,15 @@ Route::group(['prefix' => 'expense'], function (){
     Route::get          ('/destroy/{id}',                'ExpenseController@destroy'                  )->name('reason_update');
 });
 
+// Dashboard
+Route::group(['prefix' => 'dashboard'], function (){
+    Route::get          ('/',                            'DashboardController@index'                    )->name('reason');
+    Route::post         ('/save',                        'DashboardController@store'                    )->name('reason_store');
+    Route::get          ('/edit/{id}',                   'DashboardController@edit'                     )->name('reason_edit');
+    Route::post         ('/update/{id}',                 'DashboardController@update'                   )->name('reason_update');
+    Route::get          ('/destroy/{id}',                'DashboardController@destroy'                  )->name('reason_update');
+});
+
 // Overall
 Route::group(['prefix' => 'overall'], function (){
     Route::get          ('/',                            'ExpenseController@overall'                    )->name('reason');

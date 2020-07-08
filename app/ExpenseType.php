@@ -11,8 +11,8 @@ class ExpenseType extends Model
         'description',
     ];
 
-    public function expense_name()
+    public function expenses()
     {
-        return $this->hasOne(Expense::class, 'expense_id');
+        return $this->hasOne(Expense::class, 'id');
     }
 }
